@@ -107,7 +107,7 @@ def get_RAIF ( est, fInicio, fFin, variables=None, url=None ):
     req = urllib2.urlopen ( url )
     data = req.read()
     print "\t... Slurp!"
-    return data
+    return data.split("\r\n")
     
 def process_data_ria ( data ):
     """This function proesses the data bundle downloaded from a RIA
@@ -327,9 +327,9 @@ if __name__ == "__main__":
     import socket
     timeout = 300 # 5 minutes timeout
     socket.setdefaulttimeout ( timeout )
-    jobs = []
-    for i in ["RIA", "RAIF"]:
-        p = multiprocessing.Process( target=worker, args=(i,) )
-        jobs.append(p)
-        p.start()
-    #download_all_raif( start_date="1-1-2007")
+    #jobs = []
+    #for i in ["RIA", "RAIF"]:
+        #p = multiprocessing.Process( target=worker, args=(i,) )
+        #jobs.append(p)
+        #p.start()
+    download_all_raif( start_date="1-1-2007")
